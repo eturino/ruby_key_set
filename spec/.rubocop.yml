@@ -1,0 +1,13 @@
+inherit_from: ../.rubocop.yml
+
+Performance/TimesMap:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 220
+
+RSpec/NestedGroups:
+  Max: 6
