@@ -34,6 +34,8 @@ class KeySet
     AllExceptSome.new keys
   end
 
+  private_class_method :new
+
   # COMMON
 
   def represents_all?
@@ -44,24 +46,19 @@ class KeySet
     false
   end
 
-  # :nocov:
-  # @param other [KeySet]
-  # @return [KeySet]
-  def remove(_other)
-    raise NotImplementedError
-  end
+  # @!method remove(other)
+  #   removes other key set from the current key set, returning a new one
+  #   @param other [KeySet]
+  #   @return [KeySet]
 
-  # @param other [KeySet]
-  # @return [KeySet]
-  def intersect(_other)
-    raise NotImplementedError
-  end
+  # @!method intersect(other)
+  #   intersects with the other key set, returning a new one
+  #   @param other [KeySet]
+  #   @return [KeySet]
 
-  # @return [KeySet]
-  def invert
-    raise NotImplementedError
-  end
-  # :nocov:
+  # @!method invert(other)
+  #   returns a new KeySet that represents the inverse of what this one represents
+  #   @return [KeySet]
 
   # EQUALITY AND COMPARISON
   def hash

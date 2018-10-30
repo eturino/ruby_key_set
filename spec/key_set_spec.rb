@@ -20,6 +20,10 @@ RSpec.describe KeySet do
     expect(KeySet::VERSION).not_to be nil
   end
 
+  describe 'do not use it directly (KeySet.new)' do
+    it { expect { described_class.new }.to raise_error(NoMethodError) }
+  end
+
   describe '.all' do
     context 'returns a KeySet representing all keys' do
       it { expect(key_set_all).to be_a KeySet::All }

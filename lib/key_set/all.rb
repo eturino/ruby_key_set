@@ -2,6 +2,8 @@
 
 class KeySet
   class All < KeySet
+    public_class_method :new
+
     def self.class_sort_index
       3
     end

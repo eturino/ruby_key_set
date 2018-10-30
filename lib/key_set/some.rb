@@ -2,6 +2,8 @@
 
 class KeySet
   class Some < KeySet
+    public_class_method :new
+
     include BasedOnKeys
 
     def self.class_sort_index
