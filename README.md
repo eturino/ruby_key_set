@@ -19,6 +19,38 @@ and do some operations on them, like:
 
 The keys in the `Some` and `AllExceptSome` key sets are stored in a `SortedSet`, so they are sorted and without duplicates. 
 
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'key_set'
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install key_set
+
+## Usage
+
+KeySet allows you to represent the 4 possible sets of elements:
+
+- All elements (`KeySet.all # => KeySet::All`)
+- No elements (`KeySet.non # => KeySet::None`)
+- Some elements (`KeySet.some(['k1', 'k2']) # => KeySet::Some`)
+- All except some elements (`KeySet.all_except_some(['k1', 'k2']) # => KeySet::AllExceptSome`)
+
+and do some operations on them, like:
+- calculate inverse KeySet (`key_set.invert`)
+- remove a KeySet from another KeySet (`key_set.remove(other)`)
+- intersect 2 KeySets (`key_set.intersect(other)`)
+
+The keys in the `Some` and `AllExceptSome` key sets are stored in a `SortedSet`, so they are sorted and without duplicates. 
+
 ### Creation
 
 ```ruby
@@ -164,24 +196,6 @@ KeySet.all_except_some(['k1', 'k2']).invert # => KeySet::Some with keys 'k1' and
 ```
 
 Note that removing a AllExceptSome logs a warning, since it is probably not what you want to do.
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'key_set'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install key_set
-
-## Usage
 
 ## Development
 
