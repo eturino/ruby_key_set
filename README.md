@@ -76,7 +76,7 @@ key_set.represents_none? # => true if the key set is a KeySet::None
 
 ```ruby
 KeySet.all.invert # => KeySet::None
-KeySet.none.invert # => KeySet::None
+KeySet.none.invert # => KeySet::All
 KeySet.some(['k1', 'k2']).invert # => KeySet::AllExceptSome with keys 'k1' and 'k2'
 KeySet.all_except_some(['k1', 'k2']).invert # => KeySet::Some with keys 'k1' and 'k2'
 ```
