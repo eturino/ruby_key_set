@@ -1,6 +1,10 @@
 # KeySet
 
-KeySet allows you to represent the 4 possible sets:
+[![Maintainability](https://api.codeclimate.com/v1/badges/eea7d889d4f13fbf45c7/maintainability)](https://codeclimate.com/github/eturino/ruby_key_set/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/eea7d889d4f13fbf45c7/test_coverage)](https://codeclimate.com/github/eturino/ruby_key_set/test_coverage)
+
+
+KeySet allows you to represent the 4 possible sets of elements:
 
 - All elements (`KeySet.all # => KeySet::All`)
 - No elements (`KeySet.non # => KeySet::None`)
