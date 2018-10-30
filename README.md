@@ -2,7 +2,8 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/eea7d889d4f13fbf45c7/maintainability)](https://codeclimate.com/github/eturino/ruby_key_set/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/eea7d889d4f13fbf45c7/test_coverage)](https://codeclimate.com/github/eturino/ruby_key_set/test_coverage)
-
+[![Build Status](https://travis-ci.org/eturino/ruby_key_set.svg?branch=master)](https://travis-ci.org/eturino/ruby_key_set)
+[![Gem Version](https://badge.fury.io/rb/key_set.svg)](https://badge.fury.io/rb/key_set)
 
 KeySet allows you to represent the 4 possible sets of elements:
 
