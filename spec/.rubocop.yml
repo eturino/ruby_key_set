@@ -1,8 +1,5 @@
 inherit_from: ../.rubocop.yml
 
-Performance/TimesMap:
-  Enabled: false
-
 Metrics/BlockLength:
   Enabled: false
 

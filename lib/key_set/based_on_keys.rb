@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sorted_set'
+
 class KeySet
   module BasedOnKeys
     extend ActiveSupport::Concern

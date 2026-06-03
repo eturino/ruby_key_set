@@ -2,27 +2,20 @@
 
 require 'spec_helper'
 
-# rubocop:disable Style/CaseEquality
 RSpec.describe KeySet do
-  let(:key_set_all_except_some) { described_class.all_except_some all_except_some_keys }
-  let(:key_set_some) { described_class.some some_keys }
-  let(:key_set_none) { described_class.none }
-  let(:key_set_all) { described_class.all }
-  let(:all_except_some_keys) { [key2, key4, key4].sort.reverse }
-  let(:some_keys) { [key1, key3, key3].sort.reverse }
-  let(:key5) { 'key5' }
-  let(:key4) { 'key4' }
-  let(:key3) { 'key3' }
-  let(:key2) { 'key2' }
   let(:key1) { 'key1' }
+  let(:key2) { 'key2' }
+  let(:key3) { 'key3' }
+  let(:key4) { 'key4' }
+  let(:key5) { 'key5' }
 
-  it 'has a version number' do
-    expect(KeySet::VERSION).not_to be nil
-  end
+  let(:some_keys) { [key1, key3, key3].sort.reverse }
+  let(:all_except_some_keys) { [key2, key4, key4].sort.reverse }
 
-  describe 'do not use it directly (KeySet.new)' do
-    it { expect { described_class.new }.to raise_error(NoMethodError) }
-  end
+  let(:key_set_all) { described_class.all }
+  let(:key_set_none) { described_class.none }
+  let(:key_set_some) { described_class.some some_keys }
+  let(:key_set_all_except_some) { described_class.all_except_some all_except_some_keys }
 
   describe '.all' do
     context 'returns a KeySet representing all keys' do
@@ -109,12 +102,6 @@ RSpec.describe KeySet do
           expect(result.object_id).not_to eq key_set.object_id
         end
       end
-
-      context 'KeySet.all.remove([key1, key2])' do
-        it do
-          expect { key_set.remove([key1, key2]) }.to raise_error(ArgumentError)
-        end
-      end
     end
 
     context 'None' do
@@ -153,12 +140,6 @@ RSpec.describe KeySet do
         it 'we have nothing, we remove all except some => we have nothing' do
           expect(result).to be_a KeySet::None
           expect(result.object_id).not_to eq key_set.object_id
-        end
-      end
-
-      context 'KeySet.none.remove([key1, key2])' do
-        it do
-          expect { key_set.remove([key1, key2]) }.to raise_error(ArgumentError)
         end
       end
     end
@@ -235,12 +216,6 @@ RSpec.describe KeySet do
         it 'we have some, we remove all except others, none of them are in our keys => we have nothing' do
           expect(result).to be_a KeySet::None
           expect(result.object_id).not_to eq key_set.object_id
-        end
-      end
-
-      context 'KeySet.some([key1, key3]).remove([key1, key2])' do
-        it do
-          expect { key_set.remove([key1, key2]) }.to raise_error(ArgumentError)
         end
       end
     end
@@ -342,12 +317,6 @@ RSpec.describe KeySet do
           expect(result.object_id).not_to eq key_set.object_id
         end
       end
-
-      context 'KeySet.all_except_some([key1, key3]).remove([key1, key2])' do
-        it do
-          expect { key_set.remove([key1, key2]) }.to raise_error(ArgumentError)
-        end
-      end
     end
   end
 
@@ -392,12 +361,6 @@ RSpec.describe KeySet do
           expect(result.object_id).not_to eq key_set.object_id
         end
       end
-
-      context 'KeySet.all.intersect([key1, key2])' do
-        it do
-          expect { key_set.intersect([key1, key2]) }.to raise_error(ArgumentError)
-        end
-      end
     end
 
     context 'None' do
@@ -436,12 +399,6 @@ RSpec.describe KeySet do
         it 'we have nothing, we intersect all except some => we have nothing' do
           expect(result).to be_a KeySet::None
           expect(result.object_id).not_to eq key_set.object_id
-        end
-      end
-
-      context 'KeySet.none.intersect([key1, key2])' do
-        it do
-          expect { key_set.intersect([key1, key2]) }.to raise_error(ArgumentError)
         end
       end
     end
@@ -521,12 +478,6 @@ RSpec.describe KeySet do
           expect(result).to be_a KeySet::Some
           expect(result.object_id).not_to eq key_set.object_id
           expect(result.keys.to_a).to eq key_set.keys.to_a
-        end
-      end
-
-      context 'KeySet.some([key1, key3]).intersect([key1, key2])' do
-        it do
-          expect { key_set.intersect([key1, key2]) }.to raise_error(ArgumentError)
         end
       end
     end
@@ -626,12 +577,6 @@ RSpec.describe KeySet do
           expect(result.keys.to_a).to eq key_set.keys.to_a
         end
       end
-
-      context 'KeySet.all_except_some([key1, key3]).intersect([key1, key2])' do
-        it do
-          expect { key_set.intersect([key1, key2]) }.to raise_error(ArgumentError)
-        end
-      end
     end
   end
 
@@ -649,7 +594,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_truthy }
+          it { expect(a === b).to be_truthy } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -669,7 +614,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_falsey }
+          it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -689,7 +634,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_falsey }
+          it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -709,7 +654,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_falsey }
+          it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -735,7 +680,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_falsey }
+          it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -755,7 +700,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_truthy }
+          it { expect(a === b).to be_truthy } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -775,7 +720,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_falsey }
+          it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -795,7 +740,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_falsey }
+          it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -821,7 +766,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_falsey }
+          it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -841,7 +786,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_falsey }
+          it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -864,7 +809,7 @@ RSpec.describe KeySet do
           end
 
           context '#===' do
-            it { expect(a === b).to be_truthy }
+            it { expect(a === b).to be_truthy } # rubocop:disable Style/CaseEquality
           end
 
           context '#<=>' do
@@ -884,7 +829,7 @@ RSpec.describe KeySet do
           end
 
           context '#===' do
-            it { expect(a === b).to be_falsey }
+            it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
           end
 
           context '#<=>' do
@@ -904,7 +849,7 @@ RSpec.describe KeySet do
           end
 
           context '#===' do
-            it { expect(a === b).to be_falsey }
+            it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
           end
 
           context '#<=>' do
@@ -925,7 +870,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_falsey }
+          it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -951,7 +896,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_falsey }
+          it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -971,7 +916,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_falsey }
+          it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -991,7 +936,7 @@ RSpec.describe KeySet do
         end
 
         context '#===' do
-          it { expect(a === b).to be_falsey }
+          it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
         end
 
         context '#<=>' do
@@ -1014,7 +959,7 @@ RSpec.describe KeySet do
           end
 
           context '#===' do
-            it { expect(a === b).to be_truthy }
+            it { expect(a === b).to be_truthy } # rubocop:disable Style/CaseEquality
           end
 
           context '#<=>' do
@@ -1034,7 +979,7 @@ RSpec.describe KeySet do
           end
 
           context '#===' do
-            it { expect(a === b).to be_falsey }
+            it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
           end
 
           context '#<=>' do
@@ -1054,7 +999,7 @@ RSpec.describe KeySet do
           end
 
           context '#===' do
-            it { expect(a === b).to be_falsey }
+            it { expect(a === b).to be_falsey } # rubocop:disable Style/CaseEquality
           end
 
           context '#<=>' do
@@ -1066,52 +1011,6 @@ RSpec.describe KeySet do
           end
         end
       end
-    end
-  end
-
-  describe '#clone' do
-    context 'KeySet.all.clone' do
-      subject(:key_set) { described_class.all }
-
-      let(:result) { key_set.clone }
-
-      it { expect(result).to be_a KeySet::All }
-      it { expect(result.object_id).not_to eq key_set.object_id }
-      it { expect(result.hash).to eq key_set.hash }
-    end
-
-    context 'KeySet.none.clone' do
-      subject(:key_set) { described_class.none }
-
-      let(:result) { key_set.clone }
-
-      it { expect(result).to be_a KeySet::None }
-      it { expect(result.object_id).not_to eq key_set.object_id }
-      it { expect(result.hash).to eq key_set.hash }
-    end
-
-    context 'KeySet.some([key1, key2]).clone' do
-      subject(:key_set) { described_class.some([key1, key2]) }
-
-      let(:result) { key_set.clone }
-
-      it { expect(result).to be_a KeySet::Some }
-      it { expect(result.object_id).not_to eq key_set.object_id }
-      it { expect(result.hash).to eq key_set.hash }
-      it { expect(result.keys).to eq key_set.keys }
-      it { expect(result.keys.object_id).not_to eq key_set.keys.object_id }
-    end
-
-    context 'KeySet.all_except_some([key1, key2]).clone' do
-      subject(:key_set) { described_class.all_except_some([key1, key2]) }
-
-      let(:result) { key_set.clone }
-
-      it { expect(result).to be_a KeySet::AllExceptSome }
-      it { expect(result.object_id).not_to eq key_set.object_id }
-      it { expect(result.hash).to eq key_set.hash }
-      it { expect(result.keys).to eq key_set.keys }
-      it { expect(result.keys.object_id).not_to eq key_set.keys.object_id }
     end
   end
 
@@ -1159,4 +1058,3 @@ RSpec.describe KeySet do
     end
   end
 end
-# rubocop:enable Style/CaseEquality

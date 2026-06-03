@@ -7,15 +7,15 @@ AllCops:
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
     - 'tmp/**/*'
-    - 'db/schema.rb'
+    - 'lib/generators/**/*'
+    - 'lib/grpc/**/*'
   TargetRubyVersion: 2.5
 
 Rails:
   Enabled: true
 
 Metrics/LineLength:
-  Max: 140
-  IgnoredPatterns: ['^[\s]*#']
+  Max: 180
 
 Metrics/MethodLength:
   Max: 15
@@ -24,6 +24,12 @@ Style/SymbolArray:
   Enabled: false
 
 Style/Documentation:
+  Enabled: false
+
+Style/WordArray: # Drew & Edu discussed it and decided to turn this off, because of ugly multiline `%w[` styled arrays
+  Enabled: false
+
+Style/IfUnlessModifier: # Drew & Edu discussed it and decided to turn this off
   Enabled: false
 
 RSpec/MultipleExpectations:
@@ -38,8 +44,14 @@ RSpec/ContextWording:
 RSpec/HookArgument:
   Enabled: false
 
+RSpec/PredicateMatcher:
+  Enabled: false
+
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
